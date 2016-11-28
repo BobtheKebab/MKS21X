@@ -1,0 +1,4 @@
+# To clone a directory from github onto the local machine
+# x = text that github gives you for cloning when looking at a repository
+git clone "x"
+
