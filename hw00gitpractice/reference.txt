@@ -2,3 +2,8 @@
 # x = text that github gives you for cloning when looking at a repository
 git clone "x"
 
+# To stage an item in preparation for committing
+# Must be done for newly added files or editted files
+git add "filename"
+
+# To commit 
