@@ -6,4 +6,9 @@ git clone "x"
 # Must be done for newly added files or editted files
 git add "filename"
 
-# To commit 
+# To commit a version
+# Must have a message accompanying it
+git commit -m "message"
+
+# To push all commits to GitHub
+git push
