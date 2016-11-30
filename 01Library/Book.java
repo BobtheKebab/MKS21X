@@ -14,31 +14,31 @@ public class Book {
 	setISBN(ISBNnum);
     }
 
-    public static void setAuthor (authorName) {
+    public void setAuthor (authorName) {
 	author = authorName;
     }
 
-    public static String getAuthor () {
+    public String getAuthor () {
 	return author;
     }
 
-    public static void setTitle (titleName) {
+    public void setTitle (titleName) {
 	title = titleName;
     }
 
-    public static String getTitle () {
+    public String getTitle () {
 	return title;
     }
 
-    public static void setISBN (ISBNnum) {
+    public void setISBN (ISBNnum) {
 	ISBN = ISBNnum;
     }
 
-    public static String getISBN () {
+    public String getISBN () {
 	return ISBN;
     }
 
-    public static String toString () {
+    public String toString () {
 	String answer = "";
 	answer += "Title: " + getTitle() + "\n";
 	answer += "Author: " + getAuthor() + "\n";
