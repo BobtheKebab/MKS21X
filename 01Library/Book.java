@@ -8,13 +8,13 @@ public class Book {
 	setISBN("6666666666");
     }
 
-    public Book (string authorName, string titleName, string ISBNnum) {
+    public Book (String authorName, String titleName, String ISBNnum) {
 	setAuthor(authorName);
 	setTitle(titleName);
 	setISBN(ISBNnum);
     }
 
-    public void setAuthor (authorName) {
+    public void setAuthor (String authorName) {
 	author = authorName;
     }
 
@@ -22,7 +22,7 @@ public class Book {
 	return author;
     }
 
-    public void setTitle (titleName) {
+    public void setTitle (String titleName) {
 	title = titleName;
     }
 
@@ -30,7 +30,7 @@ public class Book {
 	return title;
     }
 
-    public void setISBN (ISBNnum) {
+    public void setISBN (String ISBNnum) {
 	ISBN = ISBNnum;
     }
 
