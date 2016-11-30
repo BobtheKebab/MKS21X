@@ -27,7 +27,7 @@ abstract class LibraryBook extends Book implements Comparable<LibraryBook> {
     public String toString () {
 	String answer = super.toString();
 	answer += "Call Number: " + getCallNum() + "\n";
-	answer += circulationStatus();
+	answer += circulationStatus() + "\n";
 	return answer;
     }
 
