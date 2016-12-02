@@ -12,7 +12,9 @@ public class SuperArrayIterator implements Iterable<String> {
     }
 
     public void hasNext() {
-	try 
+	try { (sArray.get(index + 1))
+		} catch (
+
 
     public void remove () {
 	throw new UnsupportedOperationException();
