@@ -4,6 +4,8 @@ public class CirculatingBook extends LibraryBook {
 
     public CirculatingBook (String authorName, String titleName, String ISBNnum, String callNum) {
 	super(authorName, titleName, ISBNnum, callNum);
+	setCurrentHolder("");
+	setDueDate("");
     }
 
     public String getCurrentHolder () {
@@ -44,10 +46,12 @@ public class CirculatingBook extends LibraryBook {
     }
 
     public String toString () {
-	String answer = super.toString();
-	if (getDueDate() != "") {
-	    answer += circulationStatus();
-	}
+	String answer = "";
+	answer += "Author: " + getAuthor() + "\n";
+	answer += "Title: " + getTitle() + "\n";
+	answer += "ISBN Number: " + getISBN() + "\n";
+	answer += "Call Number: " + getCallNum() + "\n";
+	answer += circulationStatus() + "\n";
 	return answer;
     }
 
