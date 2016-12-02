@@ -11,6 +11,11 @@ public class SuperArrayIterator implements Iterable<String> {
 	index = 0;
     }
 
-    
+    public void hasNext() {
+	try 
+
+    public void remove () {
+	throw new UnsupportedOperationException();
+    }
 
 }
