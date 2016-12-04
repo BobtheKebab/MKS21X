@@ -1,5 +1,5 @@
 import java.util.Iterator;
-import java.util.UnsupportedOperationException;
+import java.lang.UnsupportedOperationException;
 
 public class SuperArrayIterator implements Iterable<String> {
 
@@ -11,9 +11,14 @@ public class SuperArrayIterator implements Iterable<String> {
 	index = 0;
     }
 
-    public void hasNext() {
-	try { (sArray.get(index + 1))
-		} catch (
+    public boolean hasNext() {
+	try {
+	    sArray.get(index + 1);
+	} catch (IndexOutOfBoundsException x) {
+	    return false;
+	}
+	return true;
+    }
 
 
     public void remove () {
