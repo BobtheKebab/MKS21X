@@ -7,8 +7,8 @@ public class SuperArrayIterator implements Iterator<String> {
     private SuperArray sArray;
     private int index;
 
-    public SuperArrayIterator (SuperArray array) {
-	sArray = array;
+    public SuperArrayIterator (SuperArray SupArray) {
+	sArray = SupArray;
 	index = 0;
     }
 
