@@ -66,11 +66,4 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    public static void main (String[] args) {
-
-	Barcode a = new Barcode("12345");
-	System.out.println(a.toString());
-
-    }
-
 }
