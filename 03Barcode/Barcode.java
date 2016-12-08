@@ -1,3 +1,5 @@
+import java.lang.RuntimeException;
+
 public class Barcode implements Comparable<Barcode> {
 
     private String zip;
@@ -7,8 +9,14 @@ public class Barcode implements Comparable<Barcode> {
 		      ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
 
     public Barcode (String zip) {
+	if (zip.length() != 5) throw new RuntimeException();
 	this.zip = zip;
-	checkDigit = checkSum() % 2;
+	checkDigit = checkSum() % 10;
+    }
+
+    public Barcode clone () {
+	Barcode mustReturn = new Barcode(zip);
+	return mustReturn;
     }
 
     public String toString () {
@@ -31,10 +39,10 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    private int[] makeZipArray () {
+    public int[] makeZipArray () {
 	int[] mustReturn = new int[5];
 	for (int count = 0; count < 5; count++) {
-	    mustReturn[count] = zip.charAt(count);
+	    mustReturn[count] = zip.charAt(count) - 48;
 	}
 	return mustReturn;
     }	    
@@ -55,6 +63,13 @@ public class Barcode implements Comparable<Barcode> {
 	    mustReturn += num;
 	}
 	return mustReturn;
+    }
+
+    public static void main (String[] args) {
+
+	Barcode a = new Barcode("dank0");
+	System.out.println(a.toString());
+
     }
 
 }
