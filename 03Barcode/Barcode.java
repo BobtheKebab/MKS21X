@@ -42,6 +42,7 @@ public class Barcode implements Comparable<Barcode> {
     public int[] makeZipArray () {
 	int[] mustReturn = new int[5];
 	for (int count = 0; count < 5; count++) {
+	    if (zip.charAt(count) > 57) throw new RuntimeException();
 	    mustReturn[count] = zip.charAt(count) - 48;
 	}
 	return mustReturn;
@@ -67,7 +68,7 @@ public class Barcode implements Comparable<Barcode> {
 
     public static void main (String[] args) {
 
-	Barcode a = new Barcode("dank0");
+	Barcode a = new Barcode("12345");
 	System.out.println(a.toString());
 
     }
