@@ -8,15 +8,32 @@ public class Barcode implements Comparable<Barcode> {
 
     public Barcode (String zip) {
 	this.zip = zip;
-	for (String num : zip) {
-	    checkDigit += Integer.parseInt(num);
-	}
-	checkDigit %= 2;
+	checkDigit = checkSum() % 2;
     }
+
+    private int[] makeZipArray () {
+	int[] answer = new int[5];
+	for (int count = 0; count < 5; count++) {
+	    answer[count] = zip.charAt(count);
+	}
+    }	    
 	
-    
-    public String toString () {
-	return "dank";
-    
+    private String makeBarcode () {
+	String answer = "";
+        int[] arrayZip = makeZipArray();
+	for (int num : arrayZip) {
+	    answer += codes[num];
+	}
+	return answer;
+    }
+
+    private int checkSum () {
+	int answer = 0;
+	int[] arrayZip = makeZipArray();
+	for (int num : arrayZip) {
+	    answer += num;
+	}
+	return answer;
+    }
 
 }
