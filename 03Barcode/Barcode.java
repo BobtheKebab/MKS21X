@@ -39,7 +39,7 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    public int[] makeZipArray () {
+    private int[] makeZipArray () {
 	int[] mustReturn = new int[5];
 	for (int count = 0; count < 5; count++) {
 	    if (zip.charAt(count) > 57) throw new RuntimeException();
