@@ -11,29 +11,50 @@ public class Barcode implements Comparable<Barcode> {
 	checkDigit = checkSum() % 2;
     }
 
-    private int[] makeZipArray () {
-	int[] answer = new int[5];
-	for (int count = 0; count < 5; count++) {
-	    answer[count] = zip.charAt(count);
+    public String toString () {
+	String mustReturn = "|";
+	mustReturn += makeBarcode();
+	mustReturn += codes[checkDigit];
+	mustReturn += "|";
+	return mustReturn;
+    }
+	
+    public int compareTo (Barcode other) {
+	int mustReturn = 0;
+	String barCode = zip + checkDigit;
+	String otherBarCode = other.zip + other.checkDigit;
+	for (int count = 0; count < 5; count ++) {
+	    String charOrig = "" + barCode.charAt(count);
+	    String charOther = "" + otherBarCode.charAt(count);
+	    mustReturn += charOrig.compareTo(charOther);
 	}
+	return mustReturn;
+    }
+
+    private int[] makeZipArray () {
+	int[] mustReturn = new int[5];
+	for (int count = 0; count < 5; count++) {
+	    mustReturn[count] = zip.charAt(count);
+	}
+	return mustReturn;
     }	    
 	
     private String makeBarcode () {
-	String answer = "";
+	String mustReturn = "";
         int[] arrayZip = makeZipArray();
 	for (int num : arrayZip) {
-	    answer += codes[num];
+	    mustReturn += codes[num];
 	}
-	return answer;
+	return mustReturn;
     }
 
     private int checkSum () {
-	int answer = 0;
+	int mustReturn = 0;
 	int[] arrayZip = makeZipArray();
 	for (int num : arrayZip) {
-	    answer += num;
+	    mustReturn += num;
 	}
-	return answer;
+	return mustReturn;
     }
 
 }
