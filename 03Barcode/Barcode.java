@@ -15,7 +15,7 @@ public class Barcode implements Comparable<Barcode> {
     }
 
     public String toString () {
-	return _zip + " " + toCode(_zip);
+	return _zip + checkDigit + " " + toCode(_zip);
     }
 
 
