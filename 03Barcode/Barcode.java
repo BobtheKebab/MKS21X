@@ -26,17 +26,18 @@ public class Barcode implements Comparable<Barcode> {
 	mustReturn += "|";
 	return mustReturn;
     }
+
+    public String toZip (String code) {
+	String mustReturn = "";
+	if (code.length() != 32) throw new RuntimeException("Given code is wrong length");
+	if ( (code.charAt(0) != '|') && (code.charAt(31) != '|') ) throw new RuntimeException("Start/end bars are missing");
+        for (int strIndex = 1; strIndex + 5 < code.length(); strIndex += 5) {
+	    
 	
     public int compareTo (Barcode other) {
-	int mustReturn = 0;
 	String barCode = zip + checkDigit;
 	String otherBarCode = other.zip + other.checkDigit;
-	for (int count = 0; count < 5; count ++) {
-	    String charOrig = "" + barCode.charAt(count);
-	    String charOther = "" + otherBarCode.charAt(count);
-	    mustReturn += charOrig.compareTo(charOther);
-	}
-	return mustReturn;
+	return barCode.compareTo(otherBarCode);
     }
 
     private int[] makeZipArray () {
