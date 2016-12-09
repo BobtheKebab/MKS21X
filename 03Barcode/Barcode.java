@@ -32,7 +32,15 @@ public class Barcode implements Comparable<Barcode> {
 	if (code.length() != 32) throw new RuntimeException("Given code is wrong length");
 	if ( (code.charAt(0) != '|') && (code.charAt(31) != '|') ) throw new RuntimeException("Start/end bars are missing");
         for (int strIndex = 1; strIndex + 5 < code.length(); strIndex += 5) {
-	    
+	    for (int aryIndex = 0; aryIndex < codes.length; aryIndex++) {
+		if ( code.subString(strIndex, strIndex + 5).equals(codes[aryIndex]) ) {
+		    mustReturn += codes[aryIndex];
+		}
+	    }
+	}
+	if (mustReturn.length() != 6) throw new RuntimeException();
+	return mustReturn;
+    }
 	
     public int compareTo (Barcode other) {
 	String barCode = zip + checkDigit;
