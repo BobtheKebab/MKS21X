@@ -2,7 +2,7 @@ import java.lang.RuntimeException;
 
 public class Barcode implements Comparable<Barcode> {
 
-    private String zip;
+    private String _zip;
     private int checkDigit;
 
     String[] codes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", 
@@ -10,23 +10,24 @@ public class Barcode implements Comparable<Barcode> {
 
     public Barcode (String zip) {
 	if (zip.length() != 5) throw new RuntimeException();
-	this.zip = zip;
+	_zip = zip;
 	checkDigit = checkSum() % 10;
     }
 
-    public Barcode clone () {
-	Barcode mustReturn = new Barcode(zip);
-	return mustReturn;
+    public String toString () {
+	return _zip + " " + toCode(_zip);
     }
 
-    public String toString () {
+
+    public String toCode (String zip) {
 	String mustReturn = "|";
-	mustReturn += makeBarcode();
+	mustReturn += makeBarcode(zip);
 	mustReturn += codes[checkDigit];
 	mustReturn += "|";
 	return mustReturn;
     }
 
+    /*
     public String toZip (String code) {
 	String mustReturn = "";
 	if (code.length() != 32) throw new RuntimeException("Given code is wrong length");
@@ -41,14 +42,15 @@ public class Barcode implements Comparable<Barcode> {
 	if (mustReturn.length() != 6) throw new RuntimeException();
 	return mustReturn;
     }
+    */
 	
     public int compareTo (Barcode other) {
-	String barCode = zip + checkDigit;
-	String otherBarCode = other.zip + other.checkDigit;
+	String barCode = _zip + checkDigit;
+	String otherBarCode = other._zip + other.checkDigit;
 	return barCode.compareTo(otherBarCode);
     }
 
-    private int[] makeZipArray () {
+    private int[] makeZipArray (String zip) {
 	int[] mustReturn = new int[5];
 	for (int count = 0; count < 5; count++) {
 	    if (zip.charAt(count) > 57) throw new RuntimeException();
@@ -57,9 +59,9 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }	    
 	
-    private String makeBarcode () {
+    private String makeBarcode (String zip) {
 	String mustReturn = "";
-        int[] arrayZip = makeZipArray();
+        int[] arrayZip = makeZipArray(zip);
 	for (int num : arrayZip) {
 	    mustReturn += codes[num];
 	}
@@ -68,7 +70,7 @@ public class Barcode implements Comparable<Barcode> {
 
     private int checkSum () {
 	int mustReturn = 0;
-	int[] arrayZip = makeZipArray();
+	int[] arrayZip = makeZipArray(_zip);
 	for (int num : arrayZip) {
 	    mustReturn += num;
 	}
