@@ -3,7 +3,7 @@ import java.lang.RuntimeException;
 public class Barcode implements Comparable<Barcode> {
 
     private String _zip;
-    private int checkDigit;
+    private int _checkDigit;
 
     String[] codes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", 
 		      ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
@@ -11,24 +11,24 @@ public class Barcode implements Comparable<Barcode> {
     public Barcode (String zip) {
 	if (zip.length() != 5) throw new RuntimeException();
 	_zip = zip;
-	checkDigit = checkSum() % 10;
+	_checkDigit = checkSum();
     }
 
     public String toString () {
-	return _zip + checkDigit + " " + toCode(_zip);
+	return _zip + _checkDigit + " " + toCode(_zip);
     }
 
 
     public String toCode (String zip) {
 	String mustReturn = "|";
 	mustReturn += makeBarcode(zip);
-	mustReturn += codes[checkDigit];
+	mustReturn += codes[_checkDigit];
 	mustReturn += "|";
 	return mustReturn;
     }
 
     /*
-    public String toZip (String code) {
+    public static String toZip (String code) {
 	String mustReturn = "";
 	if (code.length() != 32) throw new RuntimeException("Given code is wrong length");
 	if ( (code.charAt(0) != '|') && (code.charAt(31) != '|') ) throw new RuntimeException("Start/end bars are missing");
@@ -45,8 +45,8 @@ public class Barcode implements Comparable<Barcode> {
     */
 	
     public int compareTo (Barcode other) {
-	String barCode = _zip + checkDigit;
-	String otherBarCode = other._zip + other.checkDigit;
+	String barCode = _zip + _checkDigit;
+	String otherBarCode = other._zip + other._checkDigit;
 	return barCode.compareTo(otherBarCode);
     }
 
@@ -68,12 +68,13 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    private int checkSum () {
+    private static int checkSum () {
 	int mustReturn = 0;
 	int[] arrayZip = makeZipArray(_zip);
 	for (int num : arrayZip) {
 	    mustReturn += num;
 	}
+	mustReturn = mustReturn % 10;
 	return mustReturn;
     }
 
