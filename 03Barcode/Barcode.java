@@ -27,22 +27,24 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    /*
     public static String toZip (String code) {
 	String mustReturn = "";
-	if (code.length() != 32) throw new RuntimeException("Given code is wrong length");
+	
+	if (code.length() != 32) throw new RuntimeException("Given barcode is wrong length");
 	if ( (code.charAt(0) != '|') && (code.charAt(31) != '|') ) throw new RuntimeException("Start/end bars are missing");
-        for (int strIndex = 1; strIndex + 5 < code.length(); strIndex += 5) {
-	    for (int aryIndex = 0; aryIndex < codes.length; aryIndex++) {
-		if ( code.subString(strIndex, strIndex + 5).equals(codes[aryIndex]) ) {
-		    mustReturn += codes[aryIndex];
-		}
-	    }
+
+	// check for illegal characters
+	for (char character : code.toCharArray()) {
+	    if ( (character != ':') || (character != '|') ) throw new RuntimeException("Barcode contains illegal characters");
 	}
-	if (mustReturn.length() != 6) throw new RuntimeException();
-	return mustReturn;
+	
+	String[] codeArray = new String[6];
+	for (int index = 1, count = 0; index + 5 < 31; index += 5, count++) {
+	    codeArray[count] = code.substring(index, index + 5);
+	}
+
+	return codeArray[0];
     }
-    */
 	
     public int compareTo (Barcode other) {
 	String barCode = _zip + _checkDigit;
@@ -68,7 +70,7 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    private static int checkSum () {
+    private int checkSum () {
 	int mustReturn = 0;
 	int[] arrayZip = makeZipArray(_zip);
 	for (int num : arrayZip) {

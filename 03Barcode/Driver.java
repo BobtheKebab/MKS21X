@@ -3,7 +3,7 @@ public class Driver {
 	
 	Barcode a = new Barcode("08451");
 
-	System.out.println(a.toString());
+	System.out.println(Barcode.toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
 
     }
 }
