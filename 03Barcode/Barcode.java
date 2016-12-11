@@ -11,7 +11,7 @@ public class Barcode implements Comparable<Barcode> {
     public Barcode (String zip) {
 	if (zip.length() != 5) throw new RuntimeException();
 	_zip = zip;
-	_checkDigit = checkSum();
+	_checkDigit = checkSum(zip);
     }
 
     public String toString () {
@@ -40,12 +40,20 @@ public class Barcode implements Comparable<Barcode> {
 
 	// Puts code into list of single number codes
 	String[] codeArray = new String[6];
-	for (int index = 1, count = 0; index + 5 < 31; index += 5, count++) {
+	for (int index = 1, count = 0; index + 5 < 32; index += 5, count++) {
 	    codeArray[count] = code.substring(index, index + 5);
 	}
 
-	for (String element : codeArray) mustReturn += codeToNum(element);
+	// Make barcode into numbers
+	for (int count = 0; count < 5; count++ ) {
+	    mustReturn += codeToNum(codeArray[count]);
+	}
 
+	// check the checksum
+	int givenChecksum = codeToNum(codeArray[5]);
+	int realChecksum = checkSum(mustReturn);
+	if (givenChecksum != realChecksum) throw new RuntimeException("Given checksum is invalid");
+	    
         return mustReturn;
     }
 	
@@ -55,7 +63,7 @@ public class Barcode implements Comparable<Barcode> {
 	return barCode.compareTo(otherBarCode);
     }
 
-    private int[] makeZipArray (String zip) {
+    private static int[] makeZipArray (String zip) {
 	int[] mustReturn = new int[5];
 	for (int count = 0; count < 5; count++) {
 	    if (zip.charAt(count) > 57) throw new RuntimeException();
@@ -73,21 +81,21 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    private static int codeToNum (String code) {
+    public static int codeToNum (String code) {
 	
 	String[] codes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", 
 			  ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
 	
 	for (int index = 0; index < codes.length; index++) {
-	    if (code == codes[index]) return index;
+	    if (code.equals(codes[index])) return index;
 	}
 	throw new RuntimeException("Barcode contains invalid values");
     }
 		
 
-    private int checkSum () {
+    private static int checkSum (String zip) {
 	int mustReturn = 0;
-	int[] arrayZip = makeZipArray(_zip);
+	int[] arrayZip = makeZipArray(zip);
 	for (int num : arrayZip) {
 	    mustReturn += num;
 	}
