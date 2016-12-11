@@ -35,15 +35,18 @@ public class Barcode implements Comparable<Barcode> {
 
 	// check for illegal characters
 	for (char character : code.toCharArray()) {
-	    if ( (character != ':') || (character != '|') ) throw new RuntimeException("Barcode contains illegal characters");
+	    if ( (character != ':') && (character != '|') ) throw new RuntimeException("Barcode contains illegal characters");
 	}
-	
+
+	// Puts code into list of single number codes
 	String[] codeArray = new String[6];
 	for (int index = 1, count = 0; index + 5 < 31; index += 5, count++) {
 	    codeArray[count] = code.substring(index, index + 5);
 	}
 
-	return codeArray[0];
+	for (String element : codeArray) mustReturn += codeToNum(element);
+
+        return mustReturn;
     }
 	
     public int compareTo (Barcode other) {
@@ -69,6 +72,18 @@ public class Barcode implements Comparable<Barcode> {
 	}
 	return mustReturn;
     }
+
+    private static int codeToNum (String code) {
+	
+	String[] codes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", 
+			  ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+	
+	for (int index = 0; index < codes.length; index++) {
+	    if (code == codes[index]) return index;
+	}
+	throw new RuntimeException("Barcode contains invalid values");
+    }
+		
 
     private int checkSum () {
 	int mustReturn = 0;
