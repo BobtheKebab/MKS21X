@@ -38,7 +38,7 @@ public class Sorts {
     public static void main (String[] args) {
 	
 	int[] a = { 69, 100, 50};
-	Sorts.selectionSort(a);
+	Sorts.insertionSort(a);
 	System.out.println(a[0]);
     }
 
