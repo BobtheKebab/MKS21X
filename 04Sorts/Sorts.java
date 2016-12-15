@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Sorts {
     
     public static String name () {
@@ -21,25 +23,23 @@ public class Sorts {
     public static void insertionSort (int[] data) {
 	for (int indexNow = 1; indexNow < data.length; indexNow++) {
 	    int temp = data[indexNow];
-	    for (int count = indexNow; count > 0; count--) {
+	    for (int count = indexNow - 1; count > -1; count--) {
 		if (temp >= data[count]) {
 		    data[count + 1] = temp;
 		    break;
 		} else {
 		    data[count + 1] = data[count];
+		    data[count] = temp;
 		}
 	    }
 	}
     }
 		    
-	    
-
-
     public static void main (String[] args) {
 	
-	int[] a = { 69, 100, 50};
+	int[] a = { 69, 100, 50, 1000, 0};
 	Sorts.insertionSort(a);
-	System.out.println(a[0]);
+	System.out.println(Arrays.toString(a));
     }
 
 }
