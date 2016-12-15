@@ -39,7 +39,7 @@ public class Sorts {
 	for (int indexNow = 0, endIndex = data.length - 1; indexNow < endIndex + 1; endIndex--) {
 	    int[] ogData = data;
 	    int[] checkData = data;
-	    if (Array.equals(ogData, checkData) return;
+	    if (Array.equals(ogData, checkData)) return;
 	    for (int count = 1; count < endIndex + 1; count++) {
 		int temp = data[count];
 		if (temp < data[count - 1]) {
