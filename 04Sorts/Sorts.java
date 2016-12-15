@@ -49,7 +49,7 @@ public class Sorts {
 		    
     public static void main (String[] args) {
 	
-	int[] a = { 69, 100, 50, 1000, 0, -100000, -2, - 50};
+	int[] a = { 69, 100, 50, 1000, 1000000, 0, -100000, -2, - 50};
 	Sorts.bubbleSort(a);
 	System.out.println(Arrays.toString(a));
     }
