@@ -34,11 +34,23 @@ public class Sorts {
 	    }
 	}
     }
+
+    public static void bubbleSort (int[] data) {
+	for (int indexNow = 0, endIndex = data.length - 1; indexNow < endIndex + 1; endIndex--) {
+	    for (int count = 1; count < endIndex + 1; count++) {
+		int temp = data[count];
+		if (temp < data[count - 1]) {
+		    data[count] = data[count - 1];
+		    data[count - 1] = temp;
+		}
+	    }
+	}
+    }
 		    
     public static void main (String[] args) {
 	
-	int[] a = { 69, 100, 50, 1000, 0};
-	Sorts.insertionSort(a);
+	int[] a = { 69, 100, 50, 1000, 0, -100000, -2, - 50};
+	Sorts.bubbleSort(a);
 	System.out.println(Arrays.toString(a));
     }
 
