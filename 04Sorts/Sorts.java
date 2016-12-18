@@ -38,7 +38,6 @@ public class Sorts {
     public static void bubbleSort (int[] data) {
 	for (int indexNow = 0, endIndex = data.length - 1; indexNow < endIndex + 1; endIndex--) {
 	    boolean wasSwitched = false;
-	    if (wasSwitched) return;
 	    for (int count = 1; count < endIndex + 1; count++) {
 		int temp = data[count];
 		if (temp < data[count - 1]) {
@@ -47,6 +46,7 @@ public class Sorts {
 		    wasSwitched = true;
 		}
 	    }
+	    if (!wasSwitched) return;
 	}
     }
 		    
