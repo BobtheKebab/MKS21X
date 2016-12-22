@@ -81,7 +81,7 @@ public class Barcode implements Comparable<Barcode> {
 	return mustReturn;
     }
 
-    public static int codeToNum (String code) {
+    private static int codeToNum (String code) {
 	
 	String[] codes = {"||:::", ":::||", "::|:|", "::||:", ":|::|", 
 			  ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
@@ -101,6 +101,16 @@ public class Barcode implements Comparable<Barcode> {
 	}
 	mustReturn = mustReturn % 10;
 	return mustReturn;
+    }
+
+    public static void main (String[] args) {
+
+	String[] codes = {"abc", "def", "ghi"};
+	
+	Barcode a = new Barcode("08451");
+
+	System.out.println(Barcode.toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
+
     }
 
 }
